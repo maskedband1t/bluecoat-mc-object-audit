@@ -72,7 +72,7 @@ def get_mc_policy_contents(url_root, credentials, policy):
 	contentCount = 0
 	if(contentType != 'IP_LIST'):
 		for url in internalJson['urls']:
-			content_list = content_list + contentType + ',' + name + ',' + description + ','
+			content_list = content_list + contentType + ',' + name + ',' + '"' + description + '"' + ','
 
 			if len(internalJson['urls']) != 0:
 				content_list += url['url'] + ','
@@ -85,14 +85,14 @@ def get_mc_policy_contents(url_root, credentials, policy):
 				if exists:
 					if url['description'] != '':
 						url_description = url['description']
-				content_list += url_description + '\n'
+				content_list += '"' + url_description + '"\n'
 				
 			else:
 				content_list += "NULL,NULL\n"
 
 	else:
 		for ip in internalJson['ipAddresses']:
-			content_list = content_list + contentType + ',' + name + ',' + description + ','
+			content_list = content_list + contentType + ',' + name + ',' + '"' + description + '"' + ','
 
 			if len(internalJson['ipAddresses']) != 0:
 				content_list += ip['ipAddress'] + ','
@@ -105,7 +105,7 @@ def get_mc_policy_contents(url_root, credentials, policy):
 				if exists:
 					if ip['description'] != '':
 						url_description = ip['description']
-				content_list += url_description + '\n'
+				content_list += '"' + url_description + '"\n'
 				
 			else:
 				content_list += "NULL,NULL\n"
@@ -133,7 +133,6 @@ if __name__ == "__main__":
 
 	with open(args['output'], 'w') as csvfile:
 		csvfile.write('object_type,object_name,object_description,url,url_description\n')
-
 		for policy in policies:
 			content_list = get_mc_policy_contents(url_root, creds, policy)
 			csvfile.write(content_list)
