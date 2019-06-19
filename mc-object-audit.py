@@ -69,7 +69,7 @@ def get_mc_policy_contents(url_root, credentials, policy):
 	url = ''
 	url_description = ''
 
-	contentCount = 0
+	
 	if(contentType != 'IP_LIST'):
 		for url in internalJson['urls']:
 			content_list = content_list + contentType + ',' + name + ',' + '"' + description + '"' + ','
