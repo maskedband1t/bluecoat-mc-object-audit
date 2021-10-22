@@ -1,5 +1,5 @@
 [config]
 username = test
 password = test
-hostname = isbcmcsppr01.private.massmutual.com
+hostname = test
 port = 8082
